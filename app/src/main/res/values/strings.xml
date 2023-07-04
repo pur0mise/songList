@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Song List</string>
+    <string name="titleTitle">Song Title</string>
+    <string name="singerTitle">Singers</string>
+    <string name="yearTitle">Year</string>
+    <string name="starsTitle">Stars</string>
+    <string name="numberOne">1</string>
+    <string name="numberTwo">2</string>
+    <string name="numberThree">3</string>
+    <string name="numberFour">4</string>
+    <string name="numberFive">5</string>
+    <string name="insert">INSERT</string>
+    <string name="showList">SHOW LIST</string>
+</resources>
