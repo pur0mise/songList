@@ -79,7 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<Song> getAllSongs() {
         ArrayList<Song> songslist = new ArrayList<Song>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns = {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_TITLE, COLUMN_STARS};
+        String[] columns = {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGERS, COLUMN_YEARS, COLUMN_STARS};
         Cursor cursor;
         cursor = db.query(TABLE_SONG, columns, null, null, null, null, null, null);
 
