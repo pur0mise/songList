@@ -101,22 +101,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Insert" />
+            android:text="Update" />
 
         <Button
             android:id="@+id/Delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Show List" />
+            android:text="Delete" />
 
 
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/Cancel"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2" />
+        android:text="@android:string/cancel" />
+
 </LinearLayout>
