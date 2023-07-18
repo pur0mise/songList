@@ -19,49 +19,43 @@ public class SecondActivity extends AppCompatActivity {
     ArrayList<Song> alSong;
     Button star5;
     Spinner yrspn;
-
+    CustomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-
-        alSong = new ArrayList<Song>();
-        ArrayAdapter<String> Aspn;
-
+        alSong = new ArrayList<>();
         lv = findViewById(R.id.lv);
         star5 = findViewById(R.id.btn5Star);
         yrspn = findViewById(R.id.yrspn);
 
-        Aspn = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        adapter = new CustomAdapter(this, R.layout.row, alSong);
+        lv.setAdapter(adapter);
 
-
-
-        ArrayAdapter adapter = new ArrayAdapter<>(SecondActivity.this, android.R.layout.simple_list_item_1, alSong);
-
-        List<Integer> dist = new ArrayList<>();
         DBHelper db = new DBHelper(SecondActivity.this);
-        List<Song> songList =db.getSong();
-        for(Song song : songList){
+        List<Song> songList = db.getSong();
+        List<Integer> dist = new ArrayList<>();
+
+        for (Song song : songList) {
             int year = song.getYear();
-            if(!dist.contains(year)){
+            if (!dist.contains(year)) {
                 dist.add(year);
-            }}
+            }
+        }
 
+        ArrayAdapter<String> Aspn = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
 
-        for(int year : dist){
+        for (int year : dist) {
             Aspn.add(String.valueOf(year));
         }
 
         yrspn.setAdapter(Aspn);
 
-        lv.setAdapter(adapter);
-
         alSong.clear();
         alSong.addAll(db.getSong());
         adapter.notifyDataSetChanged();
-
 
         ArrayList<String> data = db.getSongContent();
 
@@ -70,47 +64,26 @@ public class SecondActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Song data = alSong.get(position);
 
-
-                // Create an Intent to launch the third activity
                 Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
                 intent.putExtra("data", data);
                 startActivity(intent);
-
             }
         });
 
         star5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db = new DBHelper(SecondActivity.this);
-
                 ArrayList<Song> fiveStarSongs = new ArrayList<>();
 
                 for (Song song : alSong) {
                     if (song.getStar() == 5) {
                         fiveStarSongs.add(song);
                     }
-
-                    ArrayAdapter<Song> adapter = new ArrayAdapter<>(SecondActivity.this, android.R.layout.simple_list_item_1, fiveStarSongs);
-                    lv.setAdapter(adapter);
                 }
 
-
-
+                adapter = new CustomAdapter(SecondActivity.this, R.layout.row, fiveStarSongs);
+                lv.setAdapter(adapter);
             }
         });
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
 }
